@@ -76,7 +76,7 @@ Atlanta
 Miami
 Los Angeles
 New York
-San Francisco 
+San Francisco
 Seattle
 Buffalo
 Saint Louis
@@ -85,3 +85,12 @@ Manassas
 Charlotte
 Salk Lake City
 Phoenix
+Africa The Middle East And India
+Onion Over VPN
+Asia Pacific
+P2P
+Dedicated IP
+Standard VPN Servers
+Double VPN
+The Americas
+Europe
