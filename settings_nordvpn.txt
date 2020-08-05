@@ -1,1 +1,1 @@
-{"opsys": "Windows", "command": ["nordvpn", "-c", "-g"], "settings": ["netherlands", "spain"], "cwd_path": "C:/Program Files/NordVPN"}
+{"opsys": "Linux", "command": ["nordvpn", "c"], "settings": ["spain"], "additional_settings": [["nordvpn", "set", "killswitch", "disable"]]}
