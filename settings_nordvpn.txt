@@ -1,1 +1,1 @@
-{"os": "Linux", "command": ["nordvpn", "c"], "settings": ["netherlands", "belgium", "germany", "france"], "additional_settings": [["nordvpn", "set", "killswitch", "disable"], ["nordvpn", "whitelist", "add", "port", "22"]]}
+{"opsys": "Linux", "command": ["nordvpn", "c"], "settings": ["belgium", "spain"], "additional_settings": [["nordvpn", "set", "killswitch", "disable"], ["nordvpn", "whitelist", "add", "port", "22"]]}
