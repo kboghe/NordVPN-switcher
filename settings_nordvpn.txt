@@ -1,1 +1,0 @@
-{"opsys": "Linux", "command": ["nordvpn", "c"], "settings": ["spain"], "additional_settings": [["nordvpn", "set", "killswitch", "disable"]]}
