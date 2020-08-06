@@ -11,7 +11,7 @@ NordVPN-switcher is:
 * You don't need to perform any changes to your script. NordVPN-switcher automatically detects your OS and executes the appropriate code automatically. 
 This means you're able to share your code with your colleagues without having to worry about the OS they use.
 
-**2. Extremely user-friendly**
+**2. User-friendly**
 
 * NordVPN-switcher includes a step-by-step menu that takes you through the entire setup. You don't need to construct some chaotic .txt files yourselves; you don't even need to know how to run a terminal/cmd command at all! 
 * Before attempting any VPN connection, it performs a system-checkup and checks whether the NordVPN app is installed, running and whether you are logged in. 
@@ -33,12 +33,11 @@ This means you're able to share your code with your colleagues without having to
 **5. Flexible** 
 * You can ask NordVPN-switcher to hold your hand or go rogue and feed it your own settings-file in JSON-format. if a collaborator wants to share his or her unique settings, he or she can simply send you its settings-file and that's about it!
 
-# Install and use
+# Install
 
 1. Make sure NordVPN is installed.
 
 * On Linux, run:
-
 ```
 wget -qnc https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb
 sudo dpkg -i /pathToFile/nordvpn-release_1.0.0_all.deb #replace pathToFile to location download folder
@@ -47,12 +46,35 @@ sudo apt install nordvpn
 ```
 (From the NordVPN FAQ)
 
-* On Windows:
+* On Windows
 Download the app here --> https://bit.ly/3ig2lU5
 
 2. Download/clone this repository
 3. Run `pip install -r requirements.txt` to install dependencies
 4. Using NordVPN-switcher:
+
+# The building blocks
+
+* The main building blocks of NordVPN-switcher consists of three main functions: 
+
+**1. Setting up your NordVPN settings**
+- save: if you want to save these settings for later
+- stored_settings: if you want to execute particular settings already saved in your project folder
+
+`initialize_VPN(stored_settings=0,save=0)`
+
+**2. Actually rotating between servers.** 
+- instructions: the instructions saved from the initialize_VPN function. If none is provided, the script looks for a nordvpn_settings.txt file in your project folder (which you can create by setting the `save` parameter in the first function to 1).
+- google_check: if you want to perform a google and Youtube captcha-check
+
+`rotate_VPN(instructions=None,google_check = 0)`
+
+**3. Disconnecting from the VPN service**
+- Execute this function at the end of your script (not (!) while you're hopping from server to server in a loop)
+
+`terminate_VPN(instructions=None)`
+
+# How to use
 
 **Option 1: set settings in project**
 The easiest and most user-friendly (although least automated) way of using NordVPN switcher is by saving the instructions into a new variable and feeding it to the rotate_VPN() function. 
@@ -83,6 +105,17 @@ rotate_VPN()
 terminate_VPN()
 ```
 ![resulting output option 2](http://digitalmethods.be/wp-content/uploads/2020/08/option2_linux.gif)
+
+If `save=1`, the script will write a .txt file in JSON format to your project folder. It contains all the necessary information needed to execute the `rotate_VPN` function. When the instructions parameter is missing in `rotate_VPN`, it will automatically look for the settings file in your project folder.
+
+--On Windows, the contents of the nordvpn_settings.txt file look something like this: 
+
+`{'opsys': 'Windows', 'command': ['nordvpn', '-c', '-g'], 'settings': ['belgium', 'netherlands', 'germany', 'spain', 'france'], 'cwd_path': 'C:/Program Files/NordVPN'}`
+
+-- On Linux, the file looks slightly different: 
+
+`{'opsys': 'Linux', 'command': ['nordvpn', 'c'], 'settings': ['United_States', 'Canada', 'Brazil', 'Argentina', 'Mexico', 'Chile', 'Costa_Rica', 'Australia'], 'additional_settings': [['nordvpn', 'set', 'killswitch', 'disable'], ['nordvpn', 'whitelist', 'add', 'port', '23']]}`
+
 
 **Option 3: save settings and just use rotate on each run**
 
@@ -135,5 +168,30 @@ terminate_VPN()
 
 # Windows vs Linux
 
-* The script runs slower on Windows. This is because the script communicates directly with the NordVPN.exe
-* 
+* The script runs slower on Windows. This is because the script communicates directly with the NordVPN.exe, which means the script inherits the poor speed performance of the Windows app by definition. 
+* Linux users have a couple of additional options at their disposal, namely:
+
+1.Being able to log in through the Python interface. Windows users need to make sure they're already logged into the NordVPN app. The Windows app remembers your log in by default though, so this shouldn't cause too much trouble. So even when the app is closed, NordVPN-switcher should work.
+2.Executing additional settings (e.g. killswitch etc.)
+
+* Settings files can't be directly shared between Windows and Linux machines (see option 4 - how to use). Of course, with a little tweaking, separate Windows and Linux settings-files can easily be constructed for your specific project.
+
+# Possible use cases
+
+* To circumvent ip-blocks from certain websites (e.g. while scraping particular platforms)
+
+In this case, the VPN switcher basically serves the same function as the often-used proxy lists while scraping the web (e.g. with BeauitfulSoup), but without the common disadvantages associated with the latter. 
+
+* To automate a particular task that benefits from being performed by many ip-addresses
+
+For example, manipulating Google search results by clicking on a particular link thousands of times from different IP adresses. 
+
+•	For security reasons 
+
+Of course, these are only some of the possible use-cases, I'm pretty sure there are plenty of other viable applications out there. NordVPN-switcher is extremely easy to implement, no matter the particular use-case at hand.
+
+# Questions, problems, nasty bugs to report? 
+
+kboghe@gmail.com 
+
+Have fun!
