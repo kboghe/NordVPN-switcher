@@ -176,7 +176,7 @@ terminate_VPN()
 
 # Windows vs Linux
 
-* The script runs slower on Windows. This can be explained by the fact that the script communicates directly with NordVPN.exe, which means the script inherits the poor speed performance of the Windows app by definition. 
+* The script runs slower on Windows. This can be explained by the fact that the script communicates directly with NordVPN.exe, which means it inherits the poor speed performance of the Windows app by definition. 
 * Linux users have a couple of additional options at their disposal, namely:
 
 1.Being able to log in through the Python interface. Windows users need to make sure they're already logged into the NordVPN app. The Windows app remembers your log in by default though, so this shouldn't cause too much trouble. So even when the app is closed, NordVPN-switcher should work.
@@ -184,7 +184,7 @@ terminate_VPN()
 
 * Settings files can't be directly shared between Windows and Linux machines (see option 4 - how to use). Of course, with a little tweaking, separate Windows and Linux settings-files can easily be constructed for your specific project.
 
-# Possible use cases
+# Possible applications
 
 * To circumvent ip-blocks from certain websites (e.g. while scraping particular platforms)
 
@@ -194,9 +194,9 @@ In this case, the VPN switcher basically serves the same function as the often-u
 
 For example, manipulating Google search results by clicking on a particular link thousands of times from different IP adresses. 
 
-•	For security reasons 
+* For security reasons 
 
-Of course, these are only some of the possible use-cases, I'm pretty sure there are plenty of other viable applications out there. NordVPN-switcher is extremely easy to implement, no matter the particular use-case at hand.
+I'm pretty sure there are plenty of other viable applications out there. NordVPN-switcher is extremely easy to implement, no matter the particular problem/project at hand.
 
 # Questions, problems, nasty bugs to report? 
 
