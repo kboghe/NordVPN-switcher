@@ -53,7 +53,8 @@ Download the app here --> https://bit.ly/3ig2lU5
 
 2. Download/clone this repository
 3. Run `pip install -r requirements.txt` to install dependencies
-4. Using NordVPN-switcher:
+4. Import functions`from nordvpn_switch import initialize_VPN,rotate_VPN,terminate_VPN
+5. That's it!
 
 # The building blocks
 
