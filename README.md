@@ -3,8 +3,9 @@ Rotate between different NordVPN servers with ease. Works both on Linux and Wind
 
 # But...why?
 
-I realize there are multiple NordVPN-related packages available to rotate between different servers, but they only work for Linux and/or are not exactly user-friendly. 
-NordVPN-switcher is: 
+I realize there are multiple NordVPN-related packages available, but they only work for Linux and/or are not exactly user-friendly. 
+
+--NordVPN-switcher is:-- 
 
 **1. Able to run both on Windows and Linux**
 
