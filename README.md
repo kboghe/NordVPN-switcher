@@ -45,6 +45,7 @@ sudo dpkg -i /pathToFile/nordvpn-release_1.0.0_all.deb #replace pathToFile to lo
 sudo apt update 
 sudo apt install nordvpn
 ```
+(From the NordVPN FAQ)
 
 * On Windows:
 Download the app here --> https://bit.ly/3ig2lU5
