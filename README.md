@@ -95,13 +95,23 @@ terminate_VPN(settings)
 **Option 2: save settings and execute on each run**
 
 If you want to make sure that certain NordVPN setting commands are executed (e.g. killswitch, whitelisting ports, etc.) on each run, save the instructions into your project folder once by setting the `save` parameter to 1 and execute the `initialize_VPN` and `rotate_VPN` function every time you run the script. NordVPN-switcher will alert you what kind of additional settings are pulled from the settings-file.
-This option is only relevant for Linux users who wish to execute additional settings such as enabling killswitch etc. Executing these settings is not an available option on Windows machines. 
 
 ```
 #do this once
-initialize_VPN(save=1)
+initialize_VPN(save=1)```
 
-#open project on a later date and just use the following three lines of code:
+If `save=1`, the script will write a .txt file in JSON format to your project folder. It contains all the necessary information needed to execute the `rotate_VPN` function. Again, when the instructions parameter is missing in `rotate_VPN`, it will automatically look for the settings file in your project folder.
+
+--On Windows, the contents of the nordvpn_settings.txt file look something like this (random example): 
+
+`{'opsys': 'Windows', 'command': ['nordvpn', '-c', '-g'], 'settings': ['belgium', 'netherlands', 'germany', 'spain', 'france'], 'cwd_path': 'C:/Program Files/NordVPN'}`
+
+-- On Linux, the file looks slightly different (different random example): 
+
+`{'opsys': 'Linux', 'command': ['nordvpn', 'c'], 'settings': ['United_States', 'Canada', 'Brazil', 'Argentina', 'Mexico', 'Chile', 'Costa_Rica', 'Australia'], 'additional_settings': [['nordvpn', 'set', 'killswitch', 'disable'], ['nordvpn', 'whitelist', 'add', 'port', '23']]}`
+
+
+```#open project on a later date and just use the following three lines of code:
 initialize_VPN(stored_settings=1)
 rotate_VPN()
 #do stuff
@@ -109,16 +119,7 @@ terminate_VPN()
 ```
 ![resulting output option 2](http://digitalmethods.be/wp-content/uploads/2020/08/option2_linux.gif)
 
-If `save=1`, the script will write a .txt file in JSON format to your project folder. It contains all the necessary information needed to execute the `rotate_VPN` function. Again, when the instructions parameter is missing in `rotate_VPN`, it will automatically look for the settings file in your project folder.
-
---On Windows, the contents of the nordvpn_settings.txt file look something like this: 
-
-`{'opsys': 'Windows', 'command': ['nordvpn', '-c', '-g'], 'settings': ['belgium', 'netherlands', 'germany', 'spain', 'france'], 'cwd_path': 'C:/Program Files/NordVPN'}`
-
--- On Linux, the file looks slightly different: 
-
-`{'opsys': 'Linux', 'command': ['nordvpn', 'c'], 'settings': ['United_States', 'Canada', 'Brazil', 'Argentina', 'Mexico', 'Chile', 'Costa_Rica', 'Australia'], 'additional_settings': [['nordvpn', 'set', 'killswitch', 'disable'], ['nordvpn', 'whitelist', 'add', 'port', '23']]}`
-
+This option is only relevant for Linux users who wish to execute additional settings such as enabling killswitch etc. Executing these settings is not an available option on Windows machines. 
 
 **Option 3: save settings and just use rotate on each run**
 
