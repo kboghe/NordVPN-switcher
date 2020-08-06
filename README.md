@@ -36,6 +36,19 @@ This means you're able to share your code with your colleagues without having to
 # Install and use
 
 1. Make sure NordVPN is installed.
+
+* On Linux, run:
+
+```
+wget -qnc https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb
+sudo dpkg -i /pathToFile/nordvpn-release_1.0.0_all.deb #replace pathToFile to location download folder
+sudo apt update 
+sudo apt install nordvpn
+```
+
+* On Windows:
+Download the app here --> https://bit.ly/3ig2lU5
+
 2. Download/clone this repository
 3. Run `pip install -r requirements.txt` to install dependencies
 4. Using NordVPN-switcher:
