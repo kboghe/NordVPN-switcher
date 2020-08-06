@@ -176,7 +176,7 @@ terminate_VPN()
 
 # Windows vs Linux
 
-* The script runs slower on Windows. This is because the script communicates directly with the NordVPN.exe, which means the script inherits the poor speed performance of the Windows app by definition. 
+* The script runs slower on Windows. This can be explained by the fact that the script communicates directly with NordVPN.exe, which means the script inherits the poor speed performance of the Windows app by definition. 
 * Linux users have a couple of additional options at their disposal, namely:
 
 1.Being able to log in through the Python interface. Windows users need to make sure they're already logged into the NordVPN app. The Windows app remembers your log in by default though, so this shouldn't cause too much trouble. So even when the app is closed, NordVPN-switcher should work.
