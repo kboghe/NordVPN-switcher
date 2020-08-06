@@ -109,7 +109,7 @@ If `save=1`, the script will write a .txt file in JSON format to your project fo
 
 -- On Linux, the file looks slightly different (different random example): 
 
-`{'opsys': 'Linux', 'command': ['nordvpn', 'c'], 'settings': ['United_States', 'Canada', 'Brazil', 'Argentina', 'Mexico', 'Chile', 'Costa_Rica', 'Australia'], 'additional_settings': [['nordvpn', 'set', 'killswitch', 'disable'], ['nordvpn', 'whitelist', 'add', 'port', '23']]}`
+`{'opsys': 'Linux', 'command': ['nordvpn', 'c'], 'settings': ['United_States', 'Canada', 'Brazil', 'Argentina', 'Mexico', 'Chile', 'Costa_Rica', 'Australia'], 'additional_settings': [['nordvpn', 'set', 'killswitch', 'disable'], ['nordvpn', 'whitelist', 'add', 'port', '23']],'credentials':[['name@gmail.com'],['coolpassword]]}`
 
 Thanks to the saved .txt file, you never need to go through the menu options of `initialize_VPN()` again. So, some time later, you simply perform:
 
