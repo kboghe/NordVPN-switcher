@@ -107,7 +107,7 @@ terminate_VPN()
 ```
 ![resulting output option 2](http://digitalmethods.be/wp-content/uploads/2020/08/option2_linux.gif)
 
-If `save=1`, the script will write a .txt file in JSON format to your project folder. It contains all the necessary information needed to execute the `rotate_VPN` function. When the instructions parameter is missing in `rotate_VPN`, it will automatically look for the settings file in your project folder.
+If `save=1`, the script will write a .txt file in JSON format to your project folder. It contains all the necessary information needed to execute the `rotate_VPN` function. Again, when the instructions parameter is missing in `rotate_VPN`, it will automatically look for the settings file in your project folder.
 
 --On Windows, the contents of the nordvpn_settings.txt file look something like this: 
 
