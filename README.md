@@ -84,6 +84,8 @@ rotate_VPN()
 #do stuff
 terminate_VPN()
 ```
+![resulting output option 2](http://digitalmethods.be/wp-content/uploads/2020/08/option3_linux.gif)
+
 **Option 4: manual option**
 
 Create or obtain your own settings_nordvpn.txt file, place it in your project folder and use the rotate function#
@@ -99,13 +101,21 @@ terminate_VPN()
 
 **1. Provide additional settings and save these for later use, if so desired (only on Linux)**
 
+![additional settings gif](http://digitalmethods.be/wp-content/uploads/2020/08/additionalsettings_linux.gif)
+
 **2. Login to NordVPN if logged out (only on Linux)**
 
 **3. Take a random sample from a larger region**
 
+![random sample gif](http://digitalmethods.be/wp-content/uploads/2020/08/countriesoptions_linux.gif)
+
 **4.Spellchecker**
 
+![spellchecker gif](http://digitalmethods.be/wp-content/uploads/2020/08/spellchecker.gif)
+
 **5. NordVPN app starts automatically (if closed) on Windows. Connection process can also be monitored by checking the NordVPN app**
+
+![windows app gif](http://digitalmethods.be/wp-content/uploads/2020/08/windows2.gif)
 
 **6. NordVPN-switcher automatically picks a new server if Google and/or YouTube throw a captcha, if so desired**
 
