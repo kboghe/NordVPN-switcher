@@ -3,7 +3,7 @@ Rotate between different NordVPN servers with ease. Works both on Linux and Wind
 
 # But...why?
 
-There are multiple NordVPN-related packages available to rotate between different servers, but they only work for Linux and/or are not exactly user-friendly. 
+I realize there are multiple NordVPN-related packages available to rotate between different servers, but they only work for Linux and/or are not exactly user-friendly. 
 NordVPN-switcher is: 
 
 **1. Able to run both on Windows and Linux**
@@ -17,6 +17,7 @@ This means you're able to share your code with your colleagues without having to
 * Before attempting any VPN connection, it performs a system-checkup and checks whether the NordVPN app is installed, running and whether you are logged in. 
 * If you're not logged in and you're on Linux, you can log in through the Python terminal with ease
 * If you're on Linux, it's possible to run whatever additional setting through the NordVPN app (such as setting the killswitch value, whitelisting ports, etc.). You can replicate these settings every time you run your script with ease by saving these commands into a JSON-file (simply by setting the `save` parameter to 1). 
+* On Windows, it checks multiple installation directories for the NordVPN app. When the script is unable to locate the installation folder, the menu will ask you for the folder location. The script is able to save this installation folder 
 * It even includes a spelling checker (So any attempt to connect to - let's say - "Flance" won't cause any trouble) 
 * A dictionary to world regions (e.g. Europe) and local regions (e.g. Cities in the US) is included as well. Especially on windows, taking a random pick within a wider region (e.g. asia pacific) is a real drag. NordVPN-switcher handles these kind of random-pick use-cases with ease.
 
@@ -109,5 +110,5 @@ terminate_VPN()
 
 # Windows vs Linux
 
-* The script runs slower on Windows. This is related to how the NordVPN app
+* The script runs slower on Windows. This is because the script communicates directly with the NordVPN.exe
 * 
