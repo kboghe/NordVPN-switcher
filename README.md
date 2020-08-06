@@ -94,8 +94,8 @@ terminate_VPN(settings)
 
 **Option 2: save settings and execute on each run**
 
-If you want to make sure that certain NordVPN setting commands are executed (e.g. killswitch, whitelisting ports, etc.) on each run, save the instructions into your project folder once by setting the `save` parameter to 1 and execute the `initialize_VPN` and `rotate_VPN` function every time you run the script.
-This option is only relevant for Linux machines who wish to execute additional settings such as enabling killswitch etc. Executing these settings is not an available option on Windows machines. 
+If you want to make sure that certain NordVPN setting commands are executed (e.g. killswitch, whitelisting ports, etc.) on each run, save the instructions into your project folder once by setting the `save` parameter to 1 and execute the `initialize_VPN` and `rotate_VPN` function every time you run the script. NordVPN-switcher will alert you what kind of additional settings are pulled from the settings-file.
+This option is only relevant for Linux users who wish to execute additional settings such as enabling killswitch etc. Executing these settings is not an available option on Windows machines. 
 
 ```
 #do this once
