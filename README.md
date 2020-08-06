@@ -65,7 +65,7 @@ Download the app here --> https://bit.ly/3ig2lU5
 
 `initialize_VPN(stored_settings=0,save=0)`
 
-**2. Actually rotating between servers.** 
+**2. Rotating between servers.** 
 - instructions: the instructions saved from the initialize_VPN function. If none is provided, the script looks for a nordvpn_settings.txt file in your project folder (which you can create by setting the `save` parameter in the first function to 1).
 - google_check: if you want to perform a google and Youtube captcha-check
 
