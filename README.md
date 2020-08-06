@@ -98,7 +98,8 @@ If you want to make sure that certain NordVPN setting commands are executed (e.g
 
 ```
 #do this once
-initialize_VPN(save=1)```
+initialize_VPN(save=1)
+```
 
 If `save=1`, the script will write a .txt file in JSON format to your project folder. It contains all the necessary information needed to execute the `rotate_VPN` function. Again, when the instructions parameter is missing in `rotate_VPN`, it will automatically look for the settings file in your project folder.
 
@@ -111,7 +112,8 @@ If `save=1`, the script will write a .txt file in JSON format to your project fo
 `{'opsys': 'Linux', 'command': ['nordvpn', 'c'], 'settings': ['United_States', 'Canada', 'Brazil', 'Argentina', 'Mexico', 'Chile', 'Costa_Rica', 'Australia'], 'additional_settings': [['nordvpn', 'set', 'killswitch', 'disable'], ['nordvpn', 'whitelist', 'add', 'port', '23']]}`
 
 
-```#open project on a later date and just use the following three lines of code:
+```
+#open project on a later date and just use the following three lines of code:
 initialize_VPN(stored_settings=1)
 rotate_VPN()
 #do stuff
@@ -147,6 +149,8 @@ rotate_VPN()
 #do stuff
 terminate_VPN()
 ```
+
+** > See the demo.py file for a summary **
 
 # Some features and options
 
