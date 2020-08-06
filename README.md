@@ -118,6 +118,8 @@ terminate_VPN()
 
 **2. Login to NordVPN if logged out (only on Linux)**
 
+![login nordvpn](http://digitalmethods.be/wp-content/uploads/2020/08/login_linux.gif)
+
 **3. Take a random sample from a larger region**
 
 ![random sample gif](http://digitalmethods.be/wp-content/uploads/2020/08/countriesoptions_linux.gif)
@@ -129,8 +131,6 @@ terminate_VPN()
 **5. NordVPN app starts automatically (if closed) on Windows. Connection process can also be monitored by checking the NordVPN app**
 
 ![windows app gif](http://digitalmethods.be/wp-content/uploads/2020/08/windows2.gif)
-
-**6. NordVPN-switcher automatically picks a new server if Google and/or YouTube throw a captcha, if so desired**
 
 # Windows vs Linux
 
