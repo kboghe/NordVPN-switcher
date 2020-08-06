@@ -3,20 +3,9 @@ from nordvpn_switch import initialize_VPN,rotate_VPN,terminate_VPN
 #OPTION 1: save instructions as a variable and feed it to rotate function#
 
 settings = initialize_VPN()
-
-for i in range(2):
-    print("\n\nBasic rotation #"+str(i+1)+
-          "\n__________________________")
-    rotate_VPN(instructions=settings)
-    # do stuff
-terminate_VPN(instructions=settings)
-
-for i in range(2):
-    print("\n\nRotation with captcha-check #" + str(i + 1) +
-          "\n__________________________")
-    rotate_VPN(instructions=settings,google_check=1)
-    # do stuff
-terminate_VPN(instructions=settings)
+rotate_VPN(settings)
+rotate_VPN(settings,google_check=1) #with google and youtube captcha check
+terminate_VPN(settings)
 
 #OPTION 2: save instructions in project folder once and execute initialize and rotate function every time you run script#
 #(only relevant for Linux machines who wish to execute additional settings such as enabling killswitch etc.)#
