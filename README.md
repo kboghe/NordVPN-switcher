@@ -150,7 +150,7 @@ rotate_VPN()
 terminate_VPN()
 ```
 
-** > See the demo.py file for a summary **
+**> See the demo.py file for a summary**
 
 # Some features and options
 
@@ -191,8 +191,6 @@ terminate_VPN()
 In this case, the VPN switcher basically serves the same function as the often-used proxy lists while scraping the web (e.g. with BeauitfulSoup), but without the common disadvantages associated with the latter. 
 
 * To automate a particular task that benefits from being performed by many ip-addresses
-
-For example, manipulating Google search results by clicking on a particular link thousands of times from different IP adresses. 
 
 * For security reasons 
 
