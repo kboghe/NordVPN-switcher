@@ -1,6 +1,7 @@
 # NordVPN-switcher
 Rotate between different NordVPN servers with ease. Works both on Linux and Windows without any required changes to your code.
 
+Created by Kristof Boghe
 
 # But...why?
 
@@ -80,7 +81,7 @@ Download the app here --> https://bit.ly/3ig2lU5
 
 # How to use
 
-**Option 1: set settings in project**
+**Option 1: save settings in environment**
 The easiest and most user-friendly (although least automated) way of using NordVPN switcher is by saving the instructions into a new variable and feeding it to the rotate_VPN() function. 
 
 ```
