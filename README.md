@@ -174,12 +174,12 @@ terminate_VPN()
 
 **5. Provide a list of connection options, which will be automatically incorporated into the nordvpn_settings.txt file**
 
-`
+```
 range_servers = range(800,837)
 server_list = ["nl"+str(number) for number in range_servers]
 instructions = initialize_VPN(area_input = server_list)
 rotate_VPN(instructions)
-`
+```
 
 ![server list gif](https://static.wixstatic.com/media/707176_8ea7e75a73024faca7a739a8e732cc7a~mv2.gif)
 
