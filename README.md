@@ -92,7 +92,7 @@ rotate_VPN(settings)
 rotate_VPN(settings,google_check=1) 
 terminate_VPN(settings)
 ```
-![resulting output option 1](https://media.giphy.com/media/Y3NIgq6cPzBPQONE49/giphy.gif)
+![resulting output option 1](https://static.wixstatic.com/media/707176_04d56aed046e4c1abe960f98a39d6fba~mv2.gif)
 
 **Option 2: save settings and execute on each run**
 
@@ -121,7 +121,7 @@ rotate_VPN()
 #do stuff
 terminate_VPN()
 ```
-![resulting output option 2](http://digitalmethods.be/wp-content/uploads/2020/08/option2_linux.gif)
+![resulting output option 2](https://static.wixstatic.com/media/707176_006e832eae5f48c7bb3fabdefd18b61c~mv2.gif)
 
 This option is only relevant for Linux users who wish to execute additional settings such as enabling killswitch etc. Executing these settings is not an available option on Windows machines. 
 
@@ -139,7 +139,7 @@ rotate_VPN()
 #do stuff
 terminate_VPN()
 ```
-![resulting output option 2](http://digitalmethods.be/wp-content/uploads/2020/08/option3_linux.gif)
+![resulting output option 3](https://static.wixstatic.com/media/707176_996821904d1a4f8cac71d943dca58d83~mv2.gif)
 
 **Option 4: manual option**
 
@@ -158,19 +158,19 @@ terminate_VPN()
 
 **1. Provide additional settings and save these for later use, if so desired (only on Linux)**
 
-![additional settings gif](http://digitalmethods.be/wp-content/uploads/2020/08/additionalsettings_linux.gif)
+![additional settings gif](https://static.wixstatic.com/media/707176_f419292769834df5bb1e3e4883353ef6~mv2.gif)
 
 **2. Login to NordVPN if logged out (only on Linux)**
 
-![login nordvpn](http://digitalmethods.be/wp-content/uploads/2020/08/login_linux.gif)
+![login nordvpn](https://static.wixstatic.com/media/707176_594ed7b6b8044dbfbf260d969a5b50a6~mv2.gif)
 
 **3. Take a random sample from a larger region**
 
-![random sample gif](http://digitalmethods.be/wp-content/uploads/2020/08/countriesoptions_linux.gif)
+![random sample gif](https://static.wixstatic.com/media/707176_9dcaa96814c44a99a33a9732e13fe490~mv2.gif)
 
 **4.Spellchecker**
 
-![spellchecker gif](http://digitalmethods.be/wp-content/uploads/2020/08/spellchecker.gif)
+![spellchecker gif](https://static.wixstatic.com/media/707176_2e40511ea0b0493f8f95889613b22f1a~mv2.gif)
 
 **5. Provide a list of connection options, which will be automatically incorporated into the nordvpn_settings.txt file**
 
@@ -186,11 +186,14 @@ rotate_VPN(instructions)
 
 **6. NordVPN app starts automatically (if closed) on Windows. Connection process can also be monitored by checking the NordVPN app**
 
-![windows app gif](http://digitalmethods.be/wp-content/uploads/2020/08/windows2.gif)
+![windows app gif](https://static.wixstatic.com/media/707176_e79bcbe217e44d519a245abae28c360b~mv2.gif)
 
 # Windows vs Linux
 
-* The script runs slower on Windows. This can be explained by the fact that the script communicates directly with NordVPN.exe, which means it inherits the poor speed performance of the Windows app by definition. 
+* The script runs slower on Windows. This can be explained by the fact that the script communicates directly with NordVPN.exe, which means it inherits the poor speed performance of the Windows app by definition. Compare the speed of the previous gifs (all executed on a Linux machine) with the following gif, executed on Windows:
+
+![windows slowness gif](https://static.wixstatic.com/media/707176_9fc88bae04ad4bf7ab98c1f20ac5bd85~mv2.gif)
+
 * Linux users have a couple of additional options at their disposal, namely:
 
 1.Being able to log in through the Python interface. Windows users need to make sure they're already logged into the NordVPN app. The Windows app remembers your log in by default though, so this shouldn't cause too much trouble. So even when the app is closed, NordVPN-switcher should work.
