@@ -34,3 +34,10 @@ terminate_VPN()
 rotate_VPN()
 #do stuff
 terminate_VPN()
+
+#additional option:provide the initialize_VPN() function with a list of connection options beforehand#
+#e.g. for rotating between 38 servers located in the Netherlands, just feed the function the names of the servers (nl800,nl801,etc.)#
+range_servers = range(800,838)
+server_list = ["nl"+str(number) for number in range_servers]
+instructions = initialize_VPN(area_input=server_list)
+rotate_VPN(instructions)
