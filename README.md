@@ -63,8 +63,9 @@ Download the app here --> https://bit.ly/3ig2lU5
 **1. Setting up your NordVPN settings**
 - save: if you want to save these settings for later
 - stored_settings: if you want to execute particular settings already saved in your project folder
+- area_input: if you want to feed a list of connection options. Useful when you want to automate the formulation of a server list (see option 5 in the 'some features and options' section).
 
-`initialize_VPN(stored_settings=0,save=0)`
+`initialize_VPN(stored_settings=0,save=0,area_input=None)`
 
 **2. Rotating between servers.** 
 - instructions: the instructions saved from the initialize_VPN function. If none is provided, the script looks for a nordvpn_settings.txt file in your project folder (which you can create by setting the `save` parameter in the first function to 1).
@@ -171,6 +172,13 @@ terminate_VPN()
 ![spellchecker gif](http://digitalmethods.be/wp-content/uploads/2020/08/spellchecker.gif)
 
 **5. Provide a list of connection options, which will be automatically incorporated into the nordvpn_settings.txt file**
+
+`
+range_servers = range(800,837)
+server_list = ["nl"+str(number) for number in range_servers]
+instructions = initialize_VPN(area_input = server_list)
+rotate_VPN(instructions)
+`
 
 ![server list gif](https://static.wixstatic.com/media/707176_8ea7e75a73024faca7a739a8e732cc7a~mv2.gif)
 
