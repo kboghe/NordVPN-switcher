@@ -170,7 +170,12 @@ terminate_VPN()
 
 ![spellchecker gif](http://digitalmethods.be/wp-content/uploads/2020/08/spellchecker.gif)
 
-**5. NordVPN app starts automatically (if closed) on Windows. Connection process can also be monitored by checking the NordVPN app**
+**5. Provide a list of connection options, which will be automatically incorporated into the nordvpn_settings.txt file**
+
+![server list gif](https://static.wixstatic.com/media/707176_8ea7e75a73024faca7a739a8e732cc7a~mv2.gif)
+
+
+**6. NordVPN app starts automatically (if closed) on Windows. Connection process can also be monitored by checking the NordVPN app**
 
 ![windows app gif](http://digitalmethods.be/wp-content/uploads/2020/08/windows2.gif)
 
