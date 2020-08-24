@@ -16,7 +16,7 @@ This means you're able to share your code with your colleagues without having to
 
 **2. User-friendly**
 
-* NordVPN-switcher includes a step-by-step menu that takes you through the entire setup. You don't need to construct some chaotic .txt files yourselves; you don't even need to know how to run a terminal/cmd command at all! 
+* NordVPN-switcher includes a step-by-step menu that takes you through the entire setup. You don't need to construct some chaotic .txt files; you don't even need to know how to run a terminal/cmd command at all! 
 * Before attempting any VPN connection, it performs a system-checkup and checks whether the NordVPN app is installed, running and whether you are logged in. 
 * If you're not logged in and you're on Linux, you can log in through the Python terminal with ease
 * If you're on Linux, it's possible to run whatever additional setting through the NordVPN app (such as setting the killswitch value, whitelisting ports, etc.). You can replicate these settings every time you run your script with ease by saving these commands into a JSON-file (simply by setting the `save` parameter to 1). 
