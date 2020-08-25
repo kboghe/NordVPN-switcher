@@ -52,13 +52,14 @@ sudo apt install nordvpn
 * On Windows
 Download the app here --> https://bit.ly/3ig2lU5
 
- 2.1 You can just execute:
+2. Install the package 
 
+* Execute in terminal:
 ```
 pip install nordvpn-switcher
 ```
 
- 2.2 OR, for the ones who don't use pip for some reason:
+OR, for the ones who don't use pip for some reason:
 * Download/clone this repository
 * Run `pip install -r requirements.txt` to install dependencies
 
