@@ -52,10 +52,16 @@ sudo apt install nordvpn
 * On Windows
 Download the app here --> https://bit.ly/3ig2lU5
 
-2. Download/clone this repository
-3. Run `pip install -r requirements.txt` to install dependencies
-4. Import functions`from nordvpn_switch import initialize_VPN,rotate_VPN,terminate_VPN
-5. That's it!
+2.1 You can just execute: 
+`pip install nordvpn-switcher`
+
+2.2 OR, for the ones who don't use pip for some reason:
+Download/clone this repository
+Run `pip install -r requirements.txt` to install dependencies
+
+3. Import functions`from nordvpn_switch import initialize_VPN,rotate_VPN,terminate_VPN
+
+That's it!
 
 # The building blocks
 
