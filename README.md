@@ -1,5 +1,6 @@
 # NordVPN-switcher
 Rotate between different NordVPN servers with ease. Works both on Linux and Windows without any required changes to your code.
+`pip install nordvpn-switcher` and you're all set!
 
 Created by Kristof Boghe
 
