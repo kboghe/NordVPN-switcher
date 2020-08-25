@@ -59,8 +59,8 @@ pip install nordvpn-switcher
 ```
 
 2.2 OR, for the ones who don't use pip for some reason:
-Download/clone this repository
-Run `pip install -r requirements.txt` to install dependencies
+* Download/clone this repository
+* Run `pip install -r requirements.txt` to install dependencies
 
 3. Import functions`from nordvpn_switch import initialize_VPN,rotate_VPN,terminate_VPN
 
