@@ -52,6 +52,7 @@ sudo apt install nordvpn
 (From the NordVPN FAQ)
 
 * On Windows
+
 Download the app here --> https://bit.ly/3ig2lU5
 
 2. Install the package 
