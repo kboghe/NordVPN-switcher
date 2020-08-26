@@ -72,7 +72,7 @@ That's it!
 
 # The building blocks
 
-* The main building blocks of NordVPN-switcher consists of three main functions: 
+* In essence, you'll just use the following three functions:
 
 **1. Setting up your NordVPN settings**
 - save: if you want to save these settings for later
