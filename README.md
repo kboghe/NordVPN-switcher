@@ -210,6 +210,7 @@ rotate_VPN(instructions)
 * Linux users have a couple of additional options at their disposal, namely:
 
 1.Being able to log in through the Python interface. Windows users need to make sure they're already logged into the NordVPN app. The Windows app remembers your log in by default though, so this shouldn't cause too much trouble. So even when the app is closed, NordVPN-switcher should work.
+
 2.Executing additional settings (e.g. killswitch etc.)
 
 * Settings files can't be directly shared between Windows and Linux machines (see option 4 - how to use). Of course, with a little tweaking, separate Windows and Linux settings-files can easily be constructed for your specific project.
