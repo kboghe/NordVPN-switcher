@@ -98,7 +98,7 @@ That's it!
 The easiest and most user-friendly (although least automated) way of using NordVPN switcher is by saving the instructions into a new variable and feeding it to the rotate_VPN() function. 
 
 ```
-from nordvpn_switch import initialize_VPN,rotate_VPN,terminate_VPN
+from nordvpn_switcher import initialize_VPN,rotate_VPN,terminate_VPN
 
 settings = initialize_VPN() 
 rotate_VPN(settings) 
