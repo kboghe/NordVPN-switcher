@@ -66,7 +66,7 @@ OR, for the ones who don't use pip for some reason:
 * Download/clone this repository
 * Run `pip install -r requirements.txt` to install dependencies
 
-3. Import functions`from nordvpn_switch import initialize_VPN,rotate_VPN,terminate_VPN
+3. Import functions`from nordvpn_switcher import initialize_VPN,rotate_VPN,terminate_VPN
 
 That's it!
 
