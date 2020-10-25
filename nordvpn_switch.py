@@ -11,6 +11,8 @@ import urllib
 from bs4 import BeautifulSoup
 import requests
 import json
+import importlib.resources as pkg_resources
+from nordvpn_switcher import NordVPN_options
 
 ##########################################
 def additional_settings_linux(additional_settings):
@@ -43,6 +45,21 @@ def saved_settings_check():
     else:
         print("\33[33mSaved settings loaded!\n\33[0m")
     return instructions
+
+def get_ip():
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+            'Accept-Encoding': 'none',
+            'Accept-Language': 'en-US,en;q=0.8',
+            'Connection': 'keep-alive'}
+    ip_check_websites = ['http://ip4only.me/api/',"https://ident.me/"]
+    website_pick = random.choice(ip_check_websites)
+    request_currentip = urllib.request.Request(url=website_pick, headers=headers)
+    ip = urllib.request.urlopen(request_currentip).read().decode('utf-8')
+    if website_pick == 'http://ip4only.me/api/':
+        ip = re.search("IPv4,(.*?),Remaining", ip).group(1)
+    return ip
 
 ##########################################
 #############INITIALIZE VPN###############
@@ -159,7 +176,7 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None):
                                         "Press enter to continue\n"
                                         "Type 'help' for available options\n").strip()
             if additional_settings == "help":
-                options_linux = open("NordVPN_options/options_linux.txt", 'r').read().split('\n')
+                options_linux = pkg_resources.open_text(NordVPN_options, 'options_linux.txt').read().split('\n')
                 for line in options_linux:
                     print(line)
                 additional_settings = input("").strip()
@@ -188,7 +205,7 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None):
     ###provide settings for VPN rotation###
 
     ##open available options and store these in a dict##
-    areas_list = open("NordVPN_options/countrylist.txt", 'r').read().split('\n')
+    areas_list = pkg_resources.open_text(NordVPN_options, 'countrylist.txt').read().split('\n')
     country_dict = {'countries':areas_list[0:60],'europe': areas_list[0:36], 'americas': areas_list[36:44],
                     'africa east india': areas_list[49:60],'asia pacific': areas_list[49:60],
                     'regions australia': areas_list[60:65],'regions canada': areas_list[65:68],
@@ -363,7 +380,7 @@ def rotate_VPN(instructions=None,google_check = 0):
 
     for i in range(2):
         try:
-            current_ip = new_ip = urllib.request.urlopen('https://ident.me').read().decode('utf8')
+            current_ip = new_ip = get_ip()
         except urllib.error.URLError:
             print("Can't fetch current ip. Retrying...")
             time.sleep(10)
@@ -402,7 +419,7 @@ def rotate_VPN(instructions=None,google_check = 0):
 
         for i in range(12):
             try:
-                new_ip = urllib.request.urlopen('https://ident.me').read().decode('utf8')
+                new_ip = get_ip()
             except:
                 time.sleep(5)
                 continue
