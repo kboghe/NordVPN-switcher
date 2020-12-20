@@ -217,7 +217,7 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None):
         if input_needed == 2:
             print("\nYou've entered a list of connection options. Checking list...\n")
             try:
-                settings_servers = [area.lower() for area in area_input]
+                settings_servers = area_input.lower().split(',')
                 settings_servers = ",".join(settings_servers)
             except TypeError:
                 raise Exception("I expected a list here. Are you sure you've not entered a string or some other object?\n ")
