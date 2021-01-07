@@ -3,4 +3,4 @@ psutil==5.7.2
 urllib3==1.25.10
 bs4==0.0.1
 requests==2.24.0
-lxml==4.5.2
+lxml==4.6.2
