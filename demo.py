@@ -1,10 +1,19 @@
-from nordvpn_switch import initialize_VPN,rotate_VPN,terminate_VPN
+from nordvpn_switcher.nordvpn_switch import initialize_VPN,rotate_VPN,terminate_VPN
+import time
 
 #OPTION 1: save instructions as a variable and feed it to rotate function#
-
 settings = initialize_VPN()
-rotate_VPN(settings)
-rotate_VPN(settings,google_check=1) #with google and youtube captcha check
+
+for i in range(3): #you usually implement rotate_VPN in some kind of loop (e.g. you'd like to loop over 10.000 urls)
+    rotate_VPN(settings)
+    rotate_VPN(settings,google_check=1) #with google and youtube captcha check
+
+terminate_VPN(settings)
+
+while True: #if you want to rotate between servers in an infite loop, you can use the while true statement
+    rotate_VPN(settings)
+    time.sleep(3600) #e.g. rotate servers every hour
+
 terminate_VPN(settings)
 
 #OPTION 2: save instructions in project folder once and execute initialize and rotate function every time you run script#
