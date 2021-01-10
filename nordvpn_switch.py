@@ -408,7 +408,7 @@ def rotate_VPN(instructions=None,google_check = 0):
         try:
             if opsys == "Windows":
                 new_connection = subprocess.Popen(input, shell=True, cwd=cwd_path)
-                new_connection.wait()
+                new_connection.wait(50)
             else:
                 new_connection = check_output(input)
                 print("Found a server! You're now on "+re.search('(?<=You are connected to )(.*)(?=\()', str(new_connection))[0].strip())
