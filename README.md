@@ -117,7 +117,7 @@ for i in range(3): (e.g. you'd like to loop over 10.000 urls)
 
 terminate_VPN(settings)
 ```
-if you want to rotate between servers in an infite loop, you can use the while true statement:
+if you want to rotate between servers in an infinite loop, you can use the while true statement:
 
 ```
 while True: 
