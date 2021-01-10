@@ -107,6 +107,24 @@ terminate_VPN(settings)
 ```
 ![resulting output option 1](https://static.wixstatic.com/media/707176_04d56aed046e4c1abe960f98a39d6fba~mv2.gif)
 
+
+In practice, you'll usually execute the rotoate_VPN() function within some kind of loop. 
+
+```
+for i in range(3): (e.g. you'd like to loop over 10.000 urls)
+    rotate_VPN(settings)
+    rotate_VPN(settings,google_check=1) #with google and youtube captcha check
+
+terminate_VPN(settings)
+```
+if you want to rotate between servers in an infite loop, you can use the while true statement:
+
+```
+while True: 
+    rotate_VPN(settings)
+    time.sleep(3600) #e.g. rotate servers every hour
+```
+
 **Option 2: save settings and execute on each run**
 
 If you want to make sure that certain NordVPN setting commands are executed (e.g. killswitch, whitelisting ports, etc.) on each run, save the instructions into your project folder once by setting the `save` parameter to 1 and execute the `initialize_VPN` and `rotate_VPN` function every time you run the script. NordVPN-switcher will alert you what kind of additional settings are pulled from the settings-file.
