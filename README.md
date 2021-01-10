@@ -108,7 +108,7 @@ terminate_VPN(settings)
 ![resulting output option 1](https://static.wixstatic.com/media/707176_04d56aed046e4c1abe960f98a39d6fba~mv2.gif)
 
 
-In practice, you'll usually execute the rotoate_VPN() function within some kind of loop. 
+In practice, you'll usually execute the rotate_VPN() function within some kind of loop. 
 
 ```
 for i in range(3): (e.g. you'd like to loop over 10.000 urls)
