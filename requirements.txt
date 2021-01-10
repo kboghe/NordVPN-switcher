@@ -1,6 +1,6 @@
 #Execute pip install -r requirements.txt in your terminal#
 psutil==5.7.2
-urllib3==1.25.10
+urllib
 bs4==0.0.1
 requests==2.24.0
 lxml==4.5.2
