@@ -114,7 +114,7 @@ In practice, you'll usually execute the rotate_VPN() function within some kind o
 settings = initialize_VPN() #initialize VPN and save settings variable
 for i in range(3): (e.g. you'd like to loop over 10.000 urls)
     rotate_VPN(settings)
-    *perform some other code, e.g. scraping)
+    *perform some other code, e.g. scraping*
     rotate_VPN(settings,google_check=1) #with google and youtube captcha check
 
 terminate_VPN(settings)
