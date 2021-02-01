@@ -111,8 +111,7 @@ terminate_VPN(settings)
 In practice, you'll usually execute the rotate_VPN() function within some kind of loop. 
 
 ```
-area_input = ['random country 10'] #rotate between servers of 10 random countries
-initialize_VPN(save=1) #initialize VPN and save settings to work directory. Only do this once.
+settings = initialize_VPN() #initialize VPN and save settings to work directory. Only do this once.
 for i in range(3): (e.g. you'd like to loop over 10.000 urls)
     rotate_VPN(settings)
     *perform some other code, e.g. scraping)
