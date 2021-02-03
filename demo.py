@@ -23,7 +23,7 @@ for i in range(3):
     print('\nDo whatever you want here (e.g.scraping). Pausing for 10 seconds...\n')
     time.sleep(10)
 
-# [3] of course, you can try one of the built-in randomizers if you can't be bothered picking specific regions
+# [3] of course, you can try one of the built-in randomizers if you can't be bothered with selecting specific regions
 
 #The following options are avilable:
 #random countries X
