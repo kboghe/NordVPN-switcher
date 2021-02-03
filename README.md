@@ -112,7 +112,7 @@ That's it!
 
 # How to use
 
-***Please check out the demo.py file for example code***
+***--> Please check out the demo.py file on GitHub (https://github.com/kboghe/NordVPN-switcher/blob/master/demo.py) for more examples <--***
 
 **Option 1: save settings in environment**
 The easiest and most user-friendly (although least automated) way of using NordVPN switcher is by saving the instructions into a new variable and feeding it to the rotate_VPN() function. 
@@ -145,6 +145,18 @@ if you want to rotate between servers in an infinite loop, you can use the while
 while True: 
     rotate_VPN(settings)
     time.sleep(3600) #e.g. rotate servers every hour
+```
+
+Thanks to the area_input parameter and the 'complete rotation' functionality, you don't have to provide any input at all. NordVPN will simply hop from server to server in a truly random fashion. 
+
+```
+initialize_VPN(save=1,area_input=['complete rotation'])
+
+for i in range(3):
+    rotate_VPN()
+    *perform some other code, e.g. scraping*
+    
+terminate_VPN()
 ```
 
 **Option 2: save settings and execute on each run**
