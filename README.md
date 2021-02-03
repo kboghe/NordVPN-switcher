@@ -126,7 +126,7 @@ That's it!
 
 # How to use
 
-***--> Please check out the demo.py file on GitHub (https://github.com/kboghe/NordVPN-switcher/blob/master/demo.py) for more examples <--***
+***--> Please check out the demo.py file on GitHub (https://github.com/kboghe/NordVPN-switcher/) for more examples <--***
 
 **Option 1: save settings in environment**
 The easiest and most user-friendly (although least automated) way of using NordVPN switcher is by saving the instructions into a new variable and feeding it to the rotate_VPN() function. 
