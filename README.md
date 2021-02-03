@@ -88,6 +88,8 @@ OR, for the ones who don't use pip for some reason:
 4. Rotate between servers, for example: 
 
 ```
+import time 
+
 initialize_VPN(save=1,area_input=['complete rotation'])
 
 for i in range(3):
