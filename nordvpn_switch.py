@@ -9,6 +9,7 @@ from os import path
 import platform
 import urllib
 from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
 import requests
 import json
 import importlib.resources as pkg_resources
@@ -33,8 +34,11 @@ def additional_settings_linux(additional_settings):
         settings_input_message = "\n\x1b[93mNordVPN throws an unexpected message, namely:\n" + additional_setting_execute + "\nTry something different.\x1b[0m\n"
     return settings_input_message
 
-
 ##########################################
+#Update to the latest useragents#
+ua = UserAgent()
+ua.update()
+
 def saved_settings_check():
     print("\33[33mTrying to load saved settings...\33[0m")
     try:
@@ -46,13 +50,18 @@ def saved_settings_check():
         print("\33[33mSaved settings loaded!\n\33[0m")
     return instructions
 
-def get_ip():
-    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15',
+def set_headers(ua_object):
+    useragent_pick = ua_object.random
+    headers = {'User-Agent': useragent_pick,
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
             'Accept-Encoding': 'none',
             'Accept-Language': 'en-US,en;q=0.8',
             'Connection': 'keep-alive'}
+    return headers
+
+def get_ip():
+    headers = set_headers(ua)
     ip_check_websites = ['http://ip4only.me/api/',"https://ident.me/"]
     website_pick = random.choice(ip_check_websites)
     request_currentip = urllib.request.Request(url=website_pick, headers=headers)
@@ -61,13 +70,28 @@ def get_ip():
         ip = re.search("IPv4,(.*?),Remaining", ip).group(1)
     return ip
 
+def get_nordvpn_servers():
+    serverlist =  BeautifulSoup(requests.get("https://nordvpn.com/api/server").content,"html.parser")
+    site_json=json.loads(serverlist.text)
+
+    filtered_servers = {key: [] for key in ['windows_names','linux_names']}
+    for specific_dict in site_json:
+        try:
+            if specific_dict['categories'][0]['name'] == 'Standard VPN servers':
+                filtered_servers['windows_names'].append(specific_dict['name'])
+                filtered_servers['linux_names'].append(specific_dict['domain'].split('.')[0])
+        except IndexError:
+            pass
+    return filtered_servers
+
 ##########################################
 #############INITIALIZE VPN###############
 ##########################################
 
-def initialize_VPN(stored_settings=0,save=0,area_input=None):
+def initialize_VPN(stored_settings=0,save=0,area_input=None,skip_settings=0):
 
     ###load stored settings if needed and set input_needed variables to zero if settings are provided###
+    windows_pause = 3
     additional_settings_needed = 1
     additional_settings_list = list()
     if stored_settings == 1:
@@ -76,9 +100,9 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None):
         input_needed = 0
     elif area_input is not None:
         input_needed = 2
+        windows_pause = 8
     else:
         input_needed = 1
-
 
     ###performing system check###
     opsys = platform.system()
@@ -115,7 +139,7 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None):
         print("Opening NordVPN app and disconnecting if necessary...")
         open_nord_win = subprocess.Popen(["nordvpn", "-d"],shell=True,cwd=cwd_path,stdout=DEVNULL)
         while ("NordVPN.exe" in (p.name() for p in psutil.process_iter())) == False:
-            time.sleep(3)
+            time.sleep(windows_pause)
         open_nord_win.kill()
         print("NordVPN app launched: \33[92m\N{check mark}\33[0m")
         print("#####################################")
@@ -170,7 +194,7 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None):
 
         #provide opportunity to execute additional settings.#
         settings_input_message = "\n\033[34mDo you want to execute additional settings?\033[0m"
-        while additional_settings_needed == 1:
+        while additional_settings_needed == 1 and skip_settings == 0:
             additional_settings = input(settings_input_message+
                                         "\n_________________________\n\n"
                                         "Press enter to continue\n"
@@ -237,6 +261,7 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None):
             settings_servers = input("\nOptions:\n"
                   "##########\n"
                   "* type 'quick' to choose quickconnect \n"
+                  "* type 'complete rotation' to rotate between all available NordVPN servers\n"
                   "* Single country or local region (e.g.Germany)\n"
                   "* Regions within country (e.g. regions united states')\n"
                   "* World regions (europe/americas/africa east india/asia pacific)\n"
@@ -264,8 +289,26 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None):
                     pass
             else:
                 print("\nYou are choosing for the quick connect option.\n")
-
-        #2. if provided specific servers. Notation differs for Windows and Linux machines, so two options are checked (first is Windows, second is Linux#
+        #2. if completely random rotation
+        elif settings_servers == 'complete rotation':
+            print("\nFetching list of all current NordVPN servers...\n")
+            for i in range(5):
+                try:
+                    filtered_servers = get_nordvpn_servers()
+                    if opsys == "Windows":
+                        nordvpn_command.append("-n")
+                        sample_countries = filtered_servers['windows_names']
+                    else:
+                        sample_countries = filtered_servers['linux_names']
+                except:
+                    print('\nI was unable to fetch the current NordVPN serverlist from https://nordvpn.com/api/server. Check your internet connection.\nRetrying in 60 seconds...\n')
+                    continue
+                else:
+                    input_needed = 0
+                    break
+            else:
+                raise Exception("\nI'm unable to fetch the current NordVPN serverlist. Check your internet connection.\n")
+        #3. if provided specific servers. Notation differs for Windows and Linux machines, so two options are checked (first is Windows, second is Linux#
         elif "#" in settings_servers or re.compile(r'^[a-zA-Z]+[0-9]+').search(settings_servers.split(',')[0]) is not None:
             if opsys == "Windows":
                 nordvpn_command.append("-n")
@@ -339,7 +382,7 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None):
                     sample_countries[number] = re.sub(" ","_",element)
         else:
             pass
-        #2.create insutrctions dict object#
+        #2.create instructions dict object#
         instructions = {'opsys':opsys,'command':nordvpn_command,'settings':sample_countries}
         if opsys == "Windows":
             instructions['cwd_path'] = cwd_path
@@ -413,7 +456,7 @@ def rotate_VPN(instructions=None,google_check = 0):
                 new_connection = check_output(input)
                 print("Found a server! You're now on "+re.search('(?<=You are connected to )(.*)(?=\()', str(new_connection))[0].strip())
         except:
-            print("\n An unknown error occurred while connecting to a different server! Retrying...\n")
+            print("\n An unknown error occurred while connecting to a different server! Retrying with a different server...\n")
             time.sleep(15)
             continue
 
