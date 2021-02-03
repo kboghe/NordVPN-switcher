@@ -1,14 +1,14 @@
 ### New version: 0.2.3
 
-* Added a 'complete rotation' functionality: allows you to rotate between the 4000+ available servers at random. This is different from connecting to a specific region (e.g. country, state), since NordVPN automatically opts for the 'best' server in that particular area. This means you're often connecting to the same small subswet of fast servers. When the 'complete rotation' parameter is set to 1, server rotation is truly random. This is a neat function for webscraping purposes.
+* **Added a 'complete rotation' functionality**: allows you to rotate between the 4000+ available servers at random. This is different from connecting to a specific region (e.g. country, state), since NordVPN automatically opts for the 'best' server in that particular area. This means you're often connecting to the same small subswet of fast servers. When the 'complete rotation' parameter is set to 1, server rotation is truly random. This is a neat function for webscraping purposes.
 
-* Added a 'skip settings' functionality (for Linux users only): Linux users are asked whether they'd like to execute additional settings (such as whitelisting ports) whenever they run the initialize_VPN() function. When the skip_settings parameter is set to 1, nordvpn-switcher will assume the user does not wish to execute additional settings. When the user combines this with the area_input parameter, it is possible to run NordVPN switcher right from the get-go without any required user-input on Linux (see demo.py for example code). 
+* **Added a 'skip settings' functionality (for Linux users only)**: Linux users are asked whether they'd like to execute additional settings (such as whitelisting ports) whenever they run the initialize_VPN() function. When the skip_settings parameter is set to 1, nordvpn-switcher will assume the user does not wish to execute additional settings. When the user combines this with the area_input parameter, it is possible to run NordVPN switcher right from the get-go without any required user-input on Linux (see demo.py for example code). 
 
-* The script uses the fake_useragent package for improved header-input
+* **The script uses the fake_useragent package** for improved header-input
 
-* Added an additional pause to slow the script down on Windows. Some users - especially if they run the NordVPN app on slow machines - are unable to rotate between servers because the app takes a while to start up. 
+* **Added an additional pause to slow the script down on Windows.** Some users - especially if they run the NordVPN app on slow machines - are unable to rotate between servers because the app takes a while to start up. 
 
-* Added more example code in the demo.py file (see files on tbhis Github)
+* **Added more example code** in the demo.py file (see files on tbhis Github)
 
 To all of those who've sent me feedback and/or reported bugs: thank you!
 
@@ -93,9 +93,10 @@ That's it!
 **1. Setting up your NordVPN settings**
 - save: if you want to save these settings for later
 - stored_settings: if you want to execute particular settings already saved in your project folder
-- area_input: if you want to feed a list of connection options. Useful when you want to automate the formulation of a server list (see option 5 in the 'some features and options' section).
+- area_input: if you want to feed a list of connection options. Useful when you want to automate the formulation of a server list (see option 5 in the 'some features and options' section). If you want to rotate truly at random between the 4000+ available NordVPN servers, just set this parameter to `['complete rotation']`
+- skip_settings: only relevant for Linux users, since they are able to execute additional settings. Set this parameter to 1 if you'd like to skip the settings-input. If Linux users combine the this with an area_input, they simply skip entire the step-by-step menu initiated by the initalize_VPN() function.
 
-`initialize_VPN(stored_settings=0,save=0,area_input=None)`
+`initialize_VPN(stored_settings=0,save=0,area_input=None,skip_settings=None)`
 
 **2. Rotating between servers.** 
 - instructions: the instructions saved from the initialize_VPN function. If none is provided, the script looks for a nordvpn_settings.txt file in your project folder (which you can create by setting the `save` parameter in the first function to 1).
@@ -109,6 +110,8 @@ That's it!
 `terminate_VPN(instructions=None)`
 
 # How to use
+
+***Please check out the demo.py file for example code***
 
 **Option 1: save settings in environment**
 The easiest and most user-friendly (although least automated) way of using NordVPN switcher is by saving the instructions into a new variable and feeding it to the rotate_VPN() function. 
@@ -172,7 +175,7 @@ terminate_VPN()
 ```
 ![resulting output option 2](https://static.wixstatic.com/media/707176_006e832eae5f48c7bb3fabdefd18b61c~mv2.gif)
 
-This option is only relevant for Linux users who wish to execute additional settings such as enabling killswitch etc. Executing these settings is not an available option on Windows machines. 
+This option is only relevant for Linux users who wish to execute additional settings such as enabling killswitch etc. Executing these additional settings is not an available option on Windows machines. 
 
 **Option 3: save settings and just use rotate on each run**
 
@@ -205,23 +208,32 @@ terminate_VPN()
 
 # Some features and options
 
-**1. Provide additional settings and save these for later use, if so desired (only on Linux)**
+**1. Rotate between all available NordVPN servers at random. This differs from any other connection method since NordVPN automatically picks the most 'appropriate' (as in fastest) server in a particular region. This means that connecting to, let's say, the Netherlands means you'll often end up with the same server time and time again. The 'complete rotation' functionality allows you to completely randomize server selection.
+
+```
+initialize_VPN(area_input=['complete rotation'])
+rotate_VPN()
+#do stuff
+terminate_VPN()
+```
+
+**2. Provide additional settings and save these for later use, if so desired (only on Linux)**
 
 ![additional settings gif](https://static.wixstatic.com/media/707176_f419292769834df5bb1e3e4883353ef6~mv2.gif)
 
-**2. Login to NordVPN if logged out (only on Linux)**
+**3. Login to NordVPN if logged out (only on Linux)**
 
 ![login nordvpn](https://static.wixstatic.com/media/707176_594ed7b6b8044dbfbf260d969a5b50a6~mv2.gif)
 
-**3. Take a random sample from a larger region**
+**4. Take a random sample from a larger region**
 
 ![random sample gif](https://static.wixstatic.com/media/707176_9dcaa96814c44a99a33a9732e13fe490~mv2.gif)
 
-**4.Spellchecker**
+**5.Spellchecker**
 
 ![spellchecker gif](https://static.wixstatic.com/media/707176_2e40511ea0b0493f8f95889613b22f1a~mv2.gif)
 
-**5. Provide a list of connection options, which will be automatically incorporated into the nordvpn_settings.txt file**
+**6. Provide a list of connection options, which will be automatically incorporated into the nordvpn_settings.txt file**
 
 ```
 range_servers = range(800,837)
