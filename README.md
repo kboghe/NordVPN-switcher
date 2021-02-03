@@ -209,7 +209,8 @@ terminate_VPN()
 
 # Some features and options
 
-**1. Rotate between all available NordVPN servers at random. This differs from any other connection method since NordVPN automatically picks the most 'appropriate' (as in fastest) server in a particular region. This means that connecting to, let's say, the Netherlands means you'll often end up with the same server time and time again. The 'complete rotation' functionality allows you to completely randomize server selection.
+**1. Rotate between all available NordVPN servers at random.** 
+This differs from any other connection method since NordVPN automatically picks the most 'appropriate' (as in fastest) server in a particular region. This means that connecting to, let's say, the Netherlands means you'll often end up with the same server time and time again. The 'complete rotation' functionality allows you to completely randomize server selection.
 
 ```
 initialize_VPN(area_input=['complete rotation'])
