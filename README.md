@@ -9,7 +9,7 @@
 
 * **Added an additional pause to slow the script down on Windows.** Some users - especially if they run the NordVPN app on slow machines - are unable to rotate between servers because the app takes a while to start up. 
 
-* **Added more example code** in the demo.py file (see files on tbhis Github)
+* **Added more example code** in the demo.py file (see files on Github)
 
 To all of those who've sent me feedback and/or reported bugs: thank you!
 
