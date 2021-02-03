@@ -1,52 +1,114 @@
-from nordvpn_switcher.nordvpn_switch import initialize_VPN,rotate_VPN,terminate_VPN
+from nordvpn_switcher import initialize_VPN,rotate_VPN
 import time
 
-#OPTION 1: save instructions as a variable and feed it to rotate function#
-settings = initialize_VPN()
+##############
+## WINDOWS ###
+##############
 
-for i in range(3): #you usually implement rotate_VPN in some kind of loop (e.g. you'd like to loop over 10.000 urls)
-    rotate_VPN(settings)
-    rotate_VPN(settings,google_check=1) #with google and youtube captcha check
+# [1] save settings file as a variable
 
-terminate_VPN(settings)
+instructions = initialize_VPN() #this will guide you through a step-by-step guide, including a help-menu with connection options
 
-while True: #if you want to rotate between servers in an infite loop, you can use the while true statement
-    rotate_VPN(settings)
-    time.sleep(3600) #e.g. rotate servers every hour
+for i in range(3):
+    rotate_VPN(instructions) #refer to the instructions variable here
+    print('\nDo whatever you want here (e.g.scraping). Pausing for 10 seconds...\n')
+    time.sleep(10)
 
-terminate_VPN(settings)
+# [2] if you'd like to skip the step-by-step menu (because you want to automate your script fully without any required human intervention, use the area_input parameter
 
-#OPTION 2: save instructions in project folder once and execute initialize and rotate function every time you run script#
-#(only relevant for Linux machines who wish to execute additional settings such as enabling killswitch etc.)#
+instructions = initialize_VPN(area_input=['Belgium,France,Netherlands']) # <-- Be aware: the area_input parameter expects a list, not a string
 
-#do this once
+for i in range(3):
+    rotate_VPN(instructions) #refer to the instructions variable here
+    print('\nDo whatever you want here (e.g.scraping). Pausing for 10 seconds...\n')
+    time.sleep(10)
+
+# [3] of course, you can try one of the built-in randomizers if you can't be bothered picking specific regions
+
+#The following options are avilable:
+#random countries X
+#random countries europe X
+#random countries americas X
+#random countries africa east india X
+#random countries asia pacific X
+#random regions australia X
+#random regions canada X
+#random regions germany X
+#random regions india X
+#random regions united states X
+
+instructions = initialize_VPN(area_input=['random countries europe 8'])
+
+for i in range(3):
+    rotate_VPN(instructions) #refer to the instructions variable here
+    print('\nDo whatever you want here (e.g.scraping). Pausing for 10 seconds...\n')
+    time.sleep(10)
+
+# [4] instead of saving the instructions as a variable, you could save your settings in your work directory. Just set the save parameter to 1
+
 initialize_VPN(save=1)
-#open project on a later date and just use the following three lines of code:
-initialize_VPN(stored_settings=1)
-rotate_VPN()
-#do stuff
-terminate_VPN()
 
-#OPTION 3: save instructions in project folder once and just execute the rotate function#
-#(Relevant for all Windows machines or Linux machines who do not wish to execute additional settings)#
+for i in range(3):
+    rotate_VPN() #Call the rotate_VPN without any parameter. It will look for a settings file in your work directory
+    print('\nDo whatever you want here (e.g.scraping). Pausing for 10 seconds...\n')
+    time.sleep(10)
 
-#do this once
-initialize_VPN(save=1)
-#open project on a later date and just use the following two lines of code:
-rotate_VPN()
-#do stuff
-terminate_VPN()
+# [5] If you'd like to use an already saved settings file in your work directory (for example: a colleague/friend has sent you his/her settings file),
+# use the stored settings parameter
 
-#OPTION 4: create or obtain your own settings_nordvpn.txt file, place it in your project folder and use the rotate function#
-#(For example, share particular settings with colleagues/friends who work on the same project by sending them your .txt settings file)#
+initialize_VPN(save=1,area_input = ['random countries 20']) #save settings file to work directory
+print('Imagine you close your python environment and run your script on a later date. Just load your saved settings by running the following line of code:\n')
+time.sleep(7)
+initialize_VPN(stored_settings=1) #the function will look for a settingsfile in your work directory, launch NordVPN, disconnect if necessary and validate the stored settings file.
 
-rotate_VPN()
-#do stuff
-terminate_VPN()
+for i in range(3):
+    rotate_VPN()
+    print('\nDo whatever you want here (e.g.scraping). Pausing for 10 seconds...\n')
+    time.sleep(10)
 
-#additional option:provide the initialize_VPN() function with a list of connection options beforehand#
-#e.g. for rotating between 38 servers located in the Netherlands, just feed the function the names of the servers (nl800,nl801,etc.)#
-range_servers = range(800,838)
-server_list = ["nl"+str(number) for number in range_servers]
-instructions = initialize_VPN(area_input=server_list)
-rotate_VPN(instructions)
+
+# [6] save settings file to work directory and perform a 'complete rotation'
+
+# --> a complete rotation will fetch a list of the currently 4000+ active available servers of NordVPN.
+# The rotation will rotate between all the available servers completely by random.
+# The difference with picking particular regions is that NordVPN will NOT pick the 'most appropriate' (fastest) server within a particular region when rotating.
+# Instead, complete rotation will pick a specific server at random, which mens you're unlikely to revisit the same server twice in a row.
+# Because of this, the 'complete rotation' option is ideal for webscraping purposes
+
+initialize_VPN(save=1,area_input=['complete rotation'])
+
+for i in range(3):
+    rotate_VPN()
+    print('\nDo whatever you want here (e.g.scraping). Pausing for 10 seconds...\n')
+    time.sleep(10)
+
+# [7] You can be as creative as you like. For example, the following code will perform an infinite loop of picking a random server every hour
+
+instructions = initialize_VPN(area_input=['complete rotation'])
+
+while True:
+    rotate_VPN(instructions)
+    time.sleep(3600)
+
+# [8] To implement the google and youtube captcha-check, use the google_check parameter
+
+instructions = initialize_VPN(area_input=['random regions united states 8'])
+
+for i in range(3):
+    rotate_VPN(google_check = 1)
+    print('\nDo whatever you want here (e.g.scraping). Pausing for 10 seconds...\n')
+    time.sleep(10)
+
+##############
+## LINUX #####
+##############
+
+# [1] Perform a complete rotation and skip the settings menu for complete automation
+# the 'skip settings' parameter is only available for Linux users (since setting additional settings such as whitelisting ports is only available on Linux)
+
+instr = initialize_VPN(area_input=['complete rotation'],skip_settings=1)
+
+for i in range(3):
+    rotate_VPN(instr)
+    print('\nDo whatever you want here (e.g. scraping). Pausing for 10 seconds...\n')
+    time.sleep(10)
