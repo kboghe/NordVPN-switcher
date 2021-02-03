@@ -85,6 +85,18 @@ OR, for the ones who don't use pip for some reason:
 
 3. Import functions`from nordvpn_switcher import initialize_VPN,rotate_VPN,terminate_VPN
 
+4. Rotate between servers, for example: 
+
+```
+initialize_VPN(save=1,area_input=['complete rotation'])
+
+for i in range(3):
+    rotate_VPN()
+    print('\nDo whatever you want here (e.g.scraping). Pausing for 10 seconds...\n')
+    time.sleep(10)
+```
+will perform a truly random rotation between all available NordVPN servers.
+
 That's it!
 
 # The building blocks
@@ -94,7 +106,7 @@ That's it!
 **1. Setting up your NordVPN settings**
 - save: if you want to save these settings for later
 - stored_settings: if you want to execute particular settings already saved in your project folder
-- area_input: if you want to feed a list of connection options. Useful when you want to automate the formulation of a server list (see option 5 in the 'some features and options' section). If you want to rotate truly at random between the 4000+ available NordVPN servers, just set this parameter to `['complete rotation']`
+- area_input: if you want to feed a list of connection options (not necessary). Useful when you want to automate the formulation of a server list (see option 5 in the 'some features and options' section). If you want to rotate truly at random between the 4000+ available NordVPN servers, just set this parameter to `['complete rotation']`. If you'd like to rotate between 10 random European countries, set this parameter to  `['random countries europe 10']` etc. See the demo.py file for more examples. 
 - skip_settings: only relevant for Linux users, since they are able to execute additional settings. Set this parameter to 1 if you'd like to skip the settings-input. If Linux users combine the this with an area_input, they simply skip entire the step-by-step menu initiated by the initalize_VPN() function.
 
 `initialize_VPN(stored_settings=0,save=0,area_input=None,skip_settings=None)`
