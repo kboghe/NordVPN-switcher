@@ -1,9 +1,9 @@
 from nordvpn_switcher import initialize_VPN,rotate_VPN
 import time
 
-##############
-## WINDOWS ###
-##############
+#######################
+## WINDOWS OR LINUX ###
+#######################
 
 # [1] save settings file as a variable
 
