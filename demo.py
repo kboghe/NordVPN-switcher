@@ -14,7 +14,7 @@ for i in range(3):
     print('\nDo whatever you want here (e.g.scraping). Pausing for 10 seconds...\n')
     time.sleep(10)
 
-# [2] if you'd like to skip the step-by-step menu (because you want to automate your script fully without any required human intervention, use the area_input parameter
+# [2] if you'd like to skip the step-by-step menu (because you want to automate your script fully without any required human intervention), use the area_input parameter
 
 instructions = initialize_VPN(area_input=['Belgium,France,Netherlands']) # <-- Be aware: the area_input parameter expects a list, not a string
 
