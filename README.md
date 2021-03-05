@@ -1,5 +1,5 @@
-### New version: 0.2.4
-***(03/02/2021)***
+### New version: 0.2.5
+***(02/03/2021)***
 
 * **Added a 'complete rotation' functionality**: allows you to rotate between the 4000+ available servers at random. This is different from connecting to a specific region (e.g. country, state), since NordVPN automatically opts for the 'best' server in that particular area. This means you're often connecting to the same small subset of fast servers. When the 'complete rotation' parameter is set to 1, server rotation is truly random. This is a neat function for webscraping purposes.
 
