@@ -1,6 +1,10 @@
-### New version: 0.2.5
-***(02/03/2021)***
+### New version: 0.2.6
+***(03/06/2021)***
 
+Updates for version 0.2.6:
+* **Fixed ip leakage issue**: to avoid ip leakage (e.g. while scraping), the script saves your original ip when using the initialize_VPN() function in the instructions dict/file. After rotation and thus when using the rotate_VPN() function, it checks whether your new ip is different from not only the previous ip, _but also_ your original ip.
+
+Updates for version 0.2.5: 
 * **Added a 'complete rotation' functionality**: allows you to rotate between the 4000+ available servers at random. This is different from connecting to a specific region (e.g. country, state), since NordVPN automatically opts for the 'best' server in that particular area. This means you're often connecting to the same small subset of fast servers. When the 'complete rotation' parameter is set to 1, server rotation is truly random. This is a neat function for webscraping purposes.
 
 * **Added a 'skip settings' functionality (for Linux users only)**: Linux users are asked whether they'd like to execute additional settings (such as whitelisting ports) whenever they run the initialize_VPN() function. When the skip_settings parameter is set to 1, nordvpn-switcher will assume the user does not wish to execute additional settings. When the user combines this with the area_input parameter, it is possible to run NordVPN switcher right from the get-go without any required user-input on Linux (see demo.py for example code). 
@@ -10,6 +14,8 @@
 * **Added an additional pause to slow the script down on Windows.** Some users - especially if they run the NordVPN app on slow machines - are unable to rotate between servers because the app takes a while to start up. 
 
 * **Added more example code** in the demo.py file (see files on Github)
+
+
 
 To all of those who've sent me feedback and/or reported bugs: thank you!
 
