@@ -9,7 +9,8 @@ from os import path
 import platform
 import urllib
 from bs4 import BeautifulSoup
-from fake_useragent import UserAgent
+from random_user_agent.user_agent import UserAgent
+from random_user_agent.params import SoftwareName, OperatingSystem
 import requests
 import json
 import importlib.resources as pkg_resources
@@ -35,9 +36,10 @@ def additional_settings_linux(additional_settings):
     return settings_input_message
 
 ##########################################
-#Update to the latest useragents#
-ua = UserAgent()
-ua.update()
+#Retrieve useragents#
+software_names = [SoftwareName.CHROME.value]
+operating_systems = [OperatingSystem.WINDOWS.value, OperatingSystem.LINUX.value]
+user_agent_rotator = UserAgent(software_names=software_names, operating_systems=operating_systems, limit=100)
 
 def saved_settings_check():
     print("\33[33mTrying to load saved settings...\33[0m")
@@ -50,8 +52,8 @@ def saved_settings_check():
         print("\33[33mSaved settings loaded!\n\33[0m")
     return instructions
 
-def set_headers(ua_object):
-    useragent_pick = ua_object.random
+def set_headers(user_agent_rotator):
+    useragent_pick = user_agent_rotator.get_random_user_agent()
     headers = {'User-Agent': useragent_pick,
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
@@ -61,7 +63,7 @@ def set_headers(ua_object):
     return headers
 
 def get_ip():
-    headers = set_headers(ua)
+    headers = set_headers(user_agent_rotator)
     ip_check_websites = ['http://ip4only.me/api/',"https://ident.me/"]
     website_pick = random.choice(ip_check_websites)
     request_currentip = urllib.request.Request(url=website_pick, headers=headers)
@@ -192,6 +194,9 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None,skip_settings=0):
         else:
             print("NordVPN login check: \33[92m\N{check mark}\33[0m")
 
+        #disconnect from VPN if necessary
+        terminate = subprocess.Popen(["nordvpn", "d"],stdout=DEVNULL)
+
         #provide opportunity to execute additional settings.#
         settings_input_message = "\n\033[34mDo you want to execute additional settings?\033[0m"
         while additional_settings_needed == 1 and skip_settings == 0:
@@ -292,7 +297,7 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None,skip_settings=0):
         #2. if completely random rotation
         elif settings_servers == 'complete rotation':
             print("\nFetching list of all current NordVPN servers...\n")
-            for i in range(5):
+            for i in range(120):
                 try:
                     filtered_servers = get_nordvpn_servers()
                     if opsys == "Windows":
@@ -301,7 +306,7 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None,skip_settings=0):
                     else:
                         sample_countries = filtered_servers['linux_names']
                 except:
-                    print('\nI was unable to fetch the current NordVPN serverlist from https://nordvpn.com/api/server. Check your internet connection.\nRetrying in 60 seconds...\n')
+                    time.sleep(0.5)
                     continue
                 else:
                     input_needed = 0
@@ -374,6 +379,18 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None,skip_settings=0):
                     if approved_regions == len(sample_countries):
                         input_needed = 0
 
+    ##fetch current ip to prevent ip leakage when rotating VPN##
+    for i in range(59):
+        try:
+            og_ip = get_ip()
+        except ConnectionAbortedError:
+            time.sleep(1)
+            continue
+        else:
+            break
+    else:
+        raise Exception("Can't fetch current ip, even after retrying... Check your internet connection.")
+
     ##if user does not use preloaded settings##
     if "instructions" not in locals():
         #1.add underscore if spaces are present on Linux os#
@@ -383,7 +400,7 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None,skip_settings=0):
         else:
             pass
         #2.create instructions dict object#
-        instructions = {'opsys':opsys,'command':nordvpn_command,'settings':sample_countries}
+        instructions = {'opsys':opsys,'command':nordvpn_command,'settings':sample_countries,'original_ip':og_ip}
         if opsys == "Windows":
             instructions['cwd_path'] = cwd_path
         if opsys == "Linux":
@@ -410,13 +427,13 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None,skip_settings=0):
 ############
 
 def rotate_VPN(instructions=None,google_check = 0):
-
     if instructions is None:
         instructions = saved_settings_check()
 
     opsys = instructions['opsys']
     command = instructions['command']
     settings = instructions['settings']
+    og_ip = instructions['original_ip']
 
     if opsys == "Windows":
         cwd_path = instructions['cwd_path']
@@ -435,7 +452,6 @@ def rotate_VPN(instructions=None,google_check = 0):
         raise Exception("Can't fetch current ip, even after retrying... Check your internet connection.")
 
     for i in range(4):
-
         if len(settings) > 1:
             settings_pick = list([random.choice(settings)])
         else:
@@ -467,7 +483,7 @@ def rotate_VPN(instructions=None,google_check = 0):
                 time.sleep(5)
                 continue
             else:
-                if new_ip == current_ip:
+                if new_ip in [current_ip,og_ip]:
                     time.sleep(5)
                     continue
                 else:
@@ -475,7 +491,7 @@ def rotate_VPN(instructions=None,google_check = 0):
         else:
             pass
 
-        if new_ip == current_ip:
+        if new_ip in [current_ip,og_ip]:
             print("ip-address hasn't changed. Retrying...\n")
             time.sleep(10)
             continue
@@ -516,7 +532,6 @@ def rotate_VPN(instructions=None,google_check = 0):
 ##############################
 
 def terminate_VPN(instructions=None):
-
     if instructions is None:
         instructions = saved_settings_check()
 
