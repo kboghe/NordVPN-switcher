@@ -1,3 +1,5 @@
+[![Downloads](https://static.pepy.tech/personalized-badge/nordvpn-switcher?period=total&units=international_system&left_color=black&right_color=blue&left_text=Downloads)](https://pepy.tech/project/nordvpn-switcher)
+
 ### New version: 0.2.6
 ***(03/06/2021)***
 
