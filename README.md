@@ -15,7 +15,7 @@ Updates for version 0.2.5:
 
 * **Added an additional pause to slow the script down on Windows.** Some users - especially if they run the NordVPN app on slow machines - are unable to rotate between servers because the app takes a while to start up. 
 
-* **Added more example code** in the demo.py file (see files on Github)
+* **Added more example code** in the demo.py file (see files on Github) 
 
 
 
