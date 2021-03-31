@@ -3,5 +3,5 @@ psutil==5.7.2
 urllib
 bs4==0.0.1
 requests==2.24.0
-lxml==4.5.2
+lxml==4.6.3
 fake-useragent==0.1.11
