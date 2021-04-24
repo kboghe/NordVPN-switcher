@@ -1,7 +1,10 @@
 [![Downloads](https://pepy.tech/badge/nordvpn-switcher)](https://pepy.tech/project/nordvpn-switcher)
 
-### New version: 0.2.6
-***(03/06/2021)***
+### New version: 0.2.7
+***(04/24/2021)***
+
+Updates for version 0.2.7:
+* **Fixed quick connect bug*: the script got stuck in an infinite loop if the quick-connect option was chosen using the area_input parameter.
 
 Updates for version 0.2.6:
 * **Fixed ip leakage issue**: to avoid ip leakage (e.g. while scraping), the script saves your original ip when using the initialize_VPN() function in the instructions dict/file. After rotation and thus when using the rotate_VPN() function, it checks whether your new ip is different from not only the previous ip, _but also_ your original ip.
