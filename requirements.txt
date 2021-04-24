@@ -1,7 +1,7 @@
 #Execute pip install -r requirements.txt in your terminal#
-psutil==5.7.2
-urllib
-bs4==0.0.1
-requests==2.24.0
-lxml==4.5.2
-fake-useragent==0.1.11
+psutil
+bs4
+requests
+lxml
+pathlib
+random_user_agent
