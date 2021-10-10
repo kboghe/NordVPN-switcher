@@ -64,12 +64,10 @@ def set_headers(user_agent_rotator):
 
 def get_ip():
     headers = set_headers(user_agent_rotator)
-    ip_check_websites = ['http://ip4only.me/api/',"https://ident.me/"]
+    ip_check_websites = ['https://api64.ipify.org/']
     website_pick = random.choice(ip_check_websites)
     request_currentip = urllib.request.Request(url=website_pick, headers=headers)
     ip = urllib.request.urlopen(request_currentip).read().decode('utf-8')
-    if website_pick == 'http://ip4only.me/api/':
-        ip = re.search("IPv4,(.*?),Remaining", ip).group(1)
     return ip
 
 def get_nordvpn_servers():
