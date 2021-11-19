@@ -142,7 +142,7 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None,skip_settings=0):
         print("NordVPN installation check: \33[92m\N{check mark}\33[0m")
 
         #check if nordvpn service is already running in the background
-        check_service = "nordvpn-service.exe" in (p.name() for p in psutil.process_iter())
+        check_service = "nordvpn-service.exe".lower() in (p.name().lower() for p in psutil.process_iter())
         if check_service is False:
             raise Exception("NordVPN service hasn't been initialized, please start this service in [task manager] --> [services] and restart your script")
         print("NordVPN service check: \33[92m\N{check mark}\33[0m")
@@ -150,7 +150,7 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None,skip_settings=0):
         # start NordVPN app and disconnect from VPN service if necessary#
         print("Opening NordVPN app and disconnecting if necessary...")
         open_nord_win = subprocess.Popen(["nordvpn", "-d"],shell=True,cwd=cwd_path,stdout=DEVNULL)
-        while ("NordVPN.exe" in (p.name() for p in psutil.process_iter())) == False:
+        while ("NordVPN.exe".lower() in (p.name().lower() for p in psutil.process_iter())) == False:
             time.sleep(windows_pause)
         open_nord_win.kill()
         print("NordVPN app launched: \33[92m\N{check mark}\33[0m")
