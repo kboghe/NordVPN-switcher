@@ -1,3 +1,5 @@
+Note (24/11/2021): package seems to be incompatible with Python 3.10. This issue will be adressed in a subsequent version, but in the meanwhile use Python < 3.10.
+
 ### New version: 0.2.9
 ***(07/11/2021)***
 
