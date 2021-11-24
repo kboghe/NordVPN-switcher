@@ -156,12 +156,12 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None,skip_settings=0):
         
         # for p in psutil.process_iter():
         #     try:
-        #         if "NordVPN.exe".lower() in p.name().lower():
+        #         if "nordvpn-service.exe".lower() in p.name().lower():
         #             raise Exception("NordVPN service hasn't been initialized, please start this service in [task manager] --> [services] and restart your script")
         #     except:
         #         pass
 
-        if checkRunningProcess("NordVPN.exe") == False:
+        if checkRunningProcess("nordvpn-service.exe") == False:
             raise Exception("NordVPN service hasn't been initialized, please start this service in [task manager] --> [services] and restart your script")
                 
         
