@@ -97,6 +97,17 @@ def get_nordvpn_servers():
             pass
     return filtered_servers
 
+
+def checkRunningProcess(process_name):
+    for p in psutil.process_iter():
+        try:
+            if process_name.lower() in p.name().lower():
+                return True
+        except:
+            pass
+    return False
+
+
 ###############
 #intialize vpn#
 ###############
@@ -142,16 +153,32 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None,skip_settings=0):
         print("NordVPN installation check: \33[92m\N{check mark}\33[0m")
 
         #check if nordvpn service is already running in the background
-        check_service = "nordvpn-service.exe".lower() in (p.name().lower() for p in list(psutil.process_iter()))
-        if check_service is False:
+        
+        # for p in psutil.process_iter():
+        #     try:
+        #         if "NordVPN.exe".lower() in p.name().lower():
+        #             raise Exception("NordVPN service hasn't been initialized, please start this service in [task manager] --> [services] and restart your script")
+        #     except:
+        #         pass
+
+        if checkRunningProcess("NordVPN.exe") == False:
             raise Exception("NordVPN service hasn't been initialized, please start this service in [task manager] --> [services] and restart your script")
+                
+        
+        # check_service = "nordvpn-service.exe".lower() in (p.name().lower() for p in list(psutil.process_iter()))
+        # if check_service is False:
+        #     raise Exception("NordVPN service hasn't been initialized, please start this service in [task manager] --> [services] and restart your script")
+        
         print("NordVPN service check: \33[92m\N{check mark}\33[0m")
 
         # start NordVPN app and disconnect from VPN service if necessary#
         print("Opening NordVPN app and disconnecting if necessary...")
         open_nord_win = subprocess.Popen(["nordvpn", "-d"],shell=True,cwd=cwd_path,stdout=DEVNULL)
-        while ("NordVPN.exe".lower() in (p.name().lower() for p in list(psutil.process_iter()))) == False:
+        while(checkRunningProcess("NordVPN.exe") == False):
             time.sleep(windows_pause)
+
+        # while ("NordVPN.exe".lower() in (p.name().lower() for p in list(psutil.process_iter()))) == False:
+        #     time.sleep(windows_pause)
         open_nord_win.kill()
         print("NordVPN app launched: \33[92m\N{check mark}\33[0m")
         print("#####################################")
