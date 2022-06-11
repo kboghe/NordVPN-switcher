@@ -1,0 +1,15 @@
+Available options:
+nordvpn set cybersec on or off - Enable or disable CyberSec
+nordvpn set killswitch on or off - Enable or disable Kill Switch
+nordvpn set autoconnect on or off - Enable or disable auto-connect. Example: nordvpn set autoconnect on us2435.
+
+nordvpn set notify on or off - Enable or disable notifications
+nordvpn set dns 1.1.1.1 1.0.0.1 - Set custom DNS (you can set up a single DNS or two like shown in this command).
+nordvpn set protocol udp or tcp - Switch between UDP and TCP protocols
+nordvpn set obfuscate on or off - Enable or disable Obfuscated Servers.
+nordvpn set technology - Set connection technology (OpenVPN or NordLynx)
+
+nordvpn whitelist add port 22 - Add a rule to whitelist a specified incoming port. (separate multiple ports with a space)
+nordvpn whitelist remove port 22 - Remove the rule to whitelist a specified port.
+nordvpn whitelist add subnet 192.168.0.0/16 - Add a rule to whitelist a specified subnet.
+nordvpn whitelist remove subnet 192.168.0.0/16  - Remove the rule to whitelist a specified subnet.
