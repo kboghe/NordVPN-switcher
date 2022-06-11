@@ -1,8 +1,10 @@
-Note (24/11/2021): package seems to be incompatible with Python 3.10. This issue will be adressed in a subsequent version, but in the meanwhile use Python < 3.10.
+### New version: 0.3.0
+***(11/06/2022)***
 
-### New version: 0.2.9
-***(07/11/2021)***
 
+Updates for version 0.3.0:
+* **IP check - regex fix**: website used for IP check has changed; old regex pattern is unable to capture new IP.
+* **Spelling error**: 'Salk Late City' connection option has been changed to 'Salt Lake City'.
 
 Updates for version 0.2.9:
 * **Fix in nordvpn account check**: only relevant if you'd like to login through NordVPN switcher
