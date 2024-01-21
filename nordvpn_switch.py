@@ -7,6 +7,7 @@ from os import path
 import platform
 import subprocess
 from subprocess import check_output,DEVNULL
+import sys
 #2.utilities (randomisations etc)
 import psutil
 import random
@@ -124,6 +125,16 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None,skip_settings=0):
         print("\33[33mYou're using Windows.\n"
               "Performing system check...\n"
               "###########################\n\33[0m")
+                
+        # Check if the platform is Windows
+        if platform.system() == 'Windows':
+            # Change the encoding to 'utf-8' for Windows terminal
+            if sys.version_info >= (3, 7):
+                try:
+                    sys.stdout.reconfigure(encoding='utf-8')
+                except Exception as e:
+                    print(f"An error occurred while reconfiguring stdout: {e}")
+
         #seek and set windows installation path#
         option_1_path = 'C:/Program Files/NordVPN'
         option_2_path = 'C:/Program Files (x86)/NordVPN'
