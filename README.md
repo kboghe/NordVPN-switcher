@@ -25,10 +25,15 @@ This new version of the function (get_nordvpn_servers) was made with chatgpt art
 
 
 link to the conversation with chatgpt:
-https://chat.openai.com/share/6a1af020-af45-4fd8-8137-54c694c5aac2
+    
+        https://chat.openai.com/share/6a1af020-af45-4fd8-8137-54c694c5aac2
 
 Note that the conversation is in Brazilian Portuguese, translate it into English
 
+###
+###
+###
+*** 
 
 ### New version: 0.3.0
 ***(11/06/2022)***
