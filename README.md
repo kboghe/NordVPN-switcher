@@ -1,3 +1,35 @@
+### New version made by the community: 0.4.0
+***(21/03/2024)***
+Updates for version 0.4.0:
+* **The old NordVPN API endpoint**: https://nordvpn.com/api/server has been deprecated and now returns {"status": "deprecated"}. As a result, the program is currently not functioning properly.
+
+This new version of the function (get_nordvpn_servers) was made with chatgpt artificial intelligence
+
+    def get_nordvpn_servers():
+        serverlist =  BeautifulSoup(requests.get("https://api.nordvpn.com/v1/servers").content,"html.parser")
+        site_json=json.loads(serverlist.text)
+        filtered_servers = {'windows_names': [], 'linux_names': []}
+        
+        for specific_dict in site_json:
+            try:
+                groups = specific_dict.get('groups', [])  # Verifica se 'groups' está presente
+                for group in groups:
+                    if group['title'] == 'Standard VPN servers':
+                        filtered_servers['windows_names'].append(specific_dict['name'])
+                        filtered_servers['linux_names'].append(specific_dict['domain'].split('.')[0])
+                        break # Exit the group loop if you find the desired category
+            except KeyError:
+                pass  # Ignore dictionaries that do not have the 'groups' or 'title' key
+    
+        return filtered_servers
+
+
+link to the conversation with chatgpt:
+https://chat.openai.com/share/6a1af020-af45-4fd8-8137-54c694c5aac2
+
+Note that the conversation is in Brazilian Portuguese, translate it into English
+
+
 ### New version: 0.3.0
 ***(11/06/2022)***
 
