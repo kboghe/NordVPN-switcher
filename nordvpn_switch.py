@@ -95,9 +95,9 @@ def get_nordvpn_servers():
                 if group['title'] == 'Standard VPN servers':
                     filtered_servers['windows_names'].append(specific_dict['name'])
                     filtered_servers['linux_names'].append(specific_dict['domain'].split('.')[0])
-                    break  # Sai do loop de grupos se encontrar a categoria desejada
+                    break  # Exit the group loop if you find the desired category
         except KeyError:
-            pass  # Ignora dicionários que não possuem a chave 'groups' ou 'title'
+            pass  # Ignore dictionaries that do not have the 'groups' or 'title' key
 
     return filtered_servers
 #deprecated
