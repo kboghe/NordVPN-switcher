@@ -84,18 +84,36 @@ def get_ip():
     return ip
 
 def get_nordvpn_servers():
-    serverlist =  BeautifulSoup(requests.get("https://nordvpn.com/api/server").content,"html.parser")
+    serverlist =  BeautifulSoup(requests.get("https://api.nordvpn.com/v1/servers").content,"html.parser")
     site_json=json.loads(serverlist.text)
-
-    filtered_servers = {key: [] for key in ['windows_names','linux_names']}
+    filtered_servers = {'windows_names': [], 'linux_names': []}
+    
     for specific_dict in site_json:
         try:
-            if specific_dict['categories'][0]['name'] == 'Standard VPN servers':
-                filtered_servers['windows_names'].append(specific_dict['name'])
-                filtered_servers['linux_names'].append(specific_dict['domain'].split('.')[0])
-        except IndexError:
-            pass
+            groups = specific_dict.get('groups', [])  # Verifica se 'groups' está presente
+            for group in groups:
+                if group['title'] == 'Standard VPN servers':
+                    filtered_servers['windows_names'].append(specific_dict['name'])
+                    filtered_servers['linux_names'].append(specific_dict['domain'].split('.')[0])
+                    break  # Exit the group loop if you find the desired category
+        except KeyError:
+            pass  # Ignore dictionaries that do not have the 'groups' or 'title' key
+
     return filtered_servers
+#deprecated
+# def get_nordvpn_servers():
+#     serverlist =  BeautifulSoup(requests.get("https://nordvpn.com/api/server").content,"html.parser")
+#     site_json=json.loads(serverlist.text)
+
+#     filtered_servers = {key: [] for key in ['windows_names','linux_names']}
+#     for specific_dict in site_json:
+#         try:
+#             if specific_dict['categories'][0]['name'] == 'Standard VPN servers':
+#                 filtered_servers['windows_names'].append(specific_dict['name'])
+#                 filtered_servers['linux_names'].append(specific_dict['domain'].split('.')[0])
+#         except IndexError:
+#             pass
+#     return filtered_servers
 
 ###############
 #intialize vpn#
